@@ -1,0 +1,38 @@
+<html>
+
+<style>
+.content {
+  max-width: 500px;
+  margin: auto;
+}
+</style>
+
+<div class="content">
+
+    <form action="/" method="POST">
+
+        Please enter a Company Symbol:
+        <input name="symbol" type="text" />
+        <br>
+        <br><br>
+
+        <input type="submit" value="Calculate" />
+    </form>
+        <h2> Stock Info </h2><br>
+
+        {% if request.method == "POST" and error == ""   %}
+    <strong>Company Name</strong>: {{companyName}}<br>
+        <strong>Current date and time</strong> : {{now}}<br>
+        <strong>Today's Price</strong> : {{todaysPrice}}<br>
+        <strong>Price Change</strong> : {{valueChange}}<br>
+        <strong>Percent Change</strong> : {{percentChange}}%<br>
+
+        <strong>Summary</strong> : {{todaysPrice}} {% if valueChange > 0%} + {% endif %} {{valueChange}}({% if valueChange > 0%} + {% endif%}{{percentChange}}%)<br>
+
+        {% endif %}
+
+        {% if request.method == "POST" and error != ""   %}
+            <b style = "color:red" > Error : {{error}} </b>
+        {% endif%}
+    </div>
+</html>
